@@ -1,34 +1,12 @@
 package cafe.adriel.chroma.view.tuner
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.BackdropScaffold
-import androidx.compose.material.BackdropValue
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Divider
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FreeBreakfast
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Share
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.rememberBackdropScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.material.icons.filled.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -47,16 +25,7 @@ import cafe.adriel.chroma.model.settings.*
 import cafe.adriel.chroma.model.tuner.Tuning
 import cafe.adriel.chroma.model.tuner.TuningDeviationResult
 import cafe.adriel.chroma.view.ComposableScreen
-import cafe.adriel.chroma.view.components.AboutDialog
-import cafe.adriel.chroma.view.components.ActionPreference
-import cafe.adriel.chroma.view.components.DonateDialog
-import cafe.adriel.chroma.view.components.MessageSnackbar
-import cafe.adriel.chroma.view.components.RequestPermissionSnackbar
-import cafe.adriel.chroma.view.components.SelectPreference
-import cafe.adriel.chroma.view.components.SwitchPreference
-import cafe.adriel.chroma.view.components.TuningDeviationBars
-import cafe.adriel.chroma.view.components.TuningInfo
-import cafe.adriel.chroma.view.components.TuningNote
+import cafe.adriel.chroma.view.components.*
 import cafe.adriel.chroma.view.theme.ChromaTheme
 
 class TunerScreen(
@@ -155,7 +124,7 @@ class TunerScreen(
             if (tuning.deviation is TuningDeviationResult.Detected && tuning.note != null && settings.advancedMode) {
                 TuningInfo(
                     deviation = tuning.deviation.value,
-                    frequency = tuning.formattedFrequency,
+                    frequency = tuning.note.formattedFrequency,
                     color = tuning.deviation.precision.color,
                     modifier = Modifier.constrainAs(infoRef) {
                         centerHorizontallyTo(parent)

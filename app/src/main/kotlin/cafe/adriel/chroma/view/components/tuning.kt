@@ -1,14 +1,7 @@
 package cafe.adriel.chroma.view.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -24,7 +17,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import cafe.adriel.chroma.manager.SettingsManager
 import cafe.adriel.chroma.model.tuner.ChromaticNote
 import cafe.adriel.chroma.model.tuner.TuningDeviationPrecision
 import cafe.adriel.chroma.model.tuner.TuningDeviationResult
@@ -67,7 +59,7 @@ fun TuningNote(
         }
         if (advancedMode) {
             Text(
-                text = note.note.toString(),
+                text = note.formattedFrequency,
                 color = MaterialTheme.colors.onBackground,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.h2,
@@ -77,7 +69,7 @@ fun TuningNote(
                 }
             )
             TuningValue(
-                value = note.actualPitch.toString(),
+                value = note.formattedFrequency,
                 unit = TuningUnit.HERTZ,
                 color = MaterialTheme.colors.onBackground.copy(alpha = .5f),
                 valueStyle = MaterialTheme.typography.h5,

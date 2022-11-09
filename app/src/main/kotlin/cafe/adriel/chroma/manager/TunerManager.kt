@@ -16,19 +16,18 @@ import be.tarsos.dsp.pitch.PitchDetectionHandler
 import be.tarsos.dsp.pitch.PitchDetectionResult
 import be.tarsos.dsp.pitch.PitchProcessor
 import cafe.adriel.chroma.ktx.logError
-import cafe.adriel.chroma.model.settings.ReferencePitchOption
 import cafe.adriel.chroma.model.settings.Settings
 import cafe.adriel.chroma.model.tuner.Tuning
 import cafe.adriel.chroma.model.tuner.TuningDeviationPrecision
 import cafe.adriel.chroma.model.tuner.TuningDeviationResult
-import kotlin.math.absoluteValue
-import kotlin.math.log2
-import kotlin.math.roundToInt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.absoluteValue
+import kotlin.math.log2
+import kotlin.math.roundToInt
 
 class TunerManager(
     private val settingsManager: SettingsManager,
@@ -142,12 +141,12 @@ class TunerManager(
     }
 
     private fun getTuning(detectedFrequency: Float): Tuning {
-        var chromaticScale = settingsManager.getChromaticScale()
+        var chromaticScale = settingsManager.getChromaticScaleByReferencePitch()
         var minDeviation = Int.MAX_VALUE
         var closestNote = chromaticScale.first()
 
         chromaticScale.forEach { note ->
-            val deviation = getTuningDeviation(note.actualPitch, detectedFrequency)
+            val deviation = getTuningDeviation(note.frequency, detectedFrequency)
             if (deviation.absoluteValue < minDeviation.absoluteValue) {
                 minDeviation = deviation
                 closestNote = note

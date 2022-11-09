@@ -7,6 +7,7 @@
 
     <string name="settings">Settings</string>
     <string name="precision">Precision</string>
+    <string name="reference_pitch">Reference</string>
     <string name="advanced_mode">Advanced Mode</string>
     <string name="show_secondary_data">Displays secondary data such as octave and frequency</string>
     <string name="noise_suppressor">Noise Suppressor</string>
@@ -44,4 +45,8 @@
     <string name="deviation_precision_3" translatable="false">±3 ct</string>
     <string name="deviation_precision_4" translatable="false">±4 ct</string>
     <string name="deviation_precision_5" translatable="false">±5 ct</string>
+
+    <string name="reference_pitch_440" translatable="false">440 Hz</string>
+    <string name="reference_pitch_441" translatable="false">441 Hz</string>
+    <string name="reference_pitch_442" translatable="false">442 Hz</string>
 </resources>

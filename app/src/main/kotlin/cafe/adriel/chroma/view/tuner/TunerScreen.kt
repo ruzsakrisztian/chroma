@@ -43,11 +43,7 @@ import cafe.adriel.chroma.ktx.openExternalAppSettings
 import cafe.adriel.chroma.ktx.rateApp
 import cafe.adriel.chroma.ktx.shareApp
 import cafe.adriel.chroma.ktx.toggle
-import cafe.adriel.chroma.model.settings.AccidentalOption
-import cafe.adriel.chroma.model.settings.DeviationPrecisionOption
-import cafe.adriel.chroma.model.settings.NotationOption
-import cafe.adriel.chroma.model.settings.PitchDetectionAlgorithmOption
-import cafe.adriel.chroma.model.settings.Settings
+import cafe.adriel.chroma.model.settings.*
 import cafe.adriel.chroma.model.tuner.Tuning
 import cafe.adriel.chroma.model.tuner.TuningDeviationResult
 import cafe.adriel.chroma.view.ComposableScreen
@@ -215,6 +211,14 @@ class TunerScreen(
                     options = DeviationPrecisionOption.values(),
                     onSelected = {
                         viewModel.updateSettings(settings.copy(deviationPrecision = it))
+                    }
+                )
+                SelectPreference(
+                    title = stringResource(ReferencePitchOption.titleRes),
+                    selected = settings.referencePitchOption,
+                    options = ReferencePitchOption.values(),
+                    onSelected = {
+                        viewModel.updateSettings(settings.copy(referencePitchOption = it))
                     }
                 )
                 SelectPreference(

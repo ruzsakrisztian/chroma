@@ -6,5 +6,6 @@ data class Settings(
     val notation: NotationOption,
     val accidental: AccidentalOption,
     val pitchDetectionAlgorithm: PitchDetectionAlgorithmOption,
-    val deviationPrecision: DeviationPrecisionOption
+    val deviationPrecision: DeviationPrecisionOption,
+    val referencePitchOption: ReferencePitchOption
 )

@@ -16,8 +16,8 @@ import be.tarsos.dsp.pitch.PitchDetectionHandler
 import be.tarsos.dsp.pitch.PitchDetectionResult
 import be.tarsos.dsp.pitch.PitchProcessor
 import cafe.adriel.chroma.ktx.logError
+import cafe.adriel.chroma.model.settings.ReferencePitchOption
 import cafe.adriel.chroma.model.settings.Settings
-import cafe.adriel.chroma.model.tuner.ChromaticScale
 import cafe.adriel.chroma.model.tuner.Tuning
 import cafe.adriel.chroma.model.tuner.TuningDeviationPrecision
 import cafe.adriel.chroma.model.tuner.TuningDeviationResult
@@ -142,11 +142,12 @@ class TunerManager(
     }
 
     private fun getTuning(detectedFrequency: Float): Tuning {
+        var chromaticScale = settingsManager.getChromaticScale()
         var minDeviation = Int.MAX_VALUE
-        var closestNote = ChromaticScale.notes.first()
+        var closestNote = chromaticScale.first()
 
-        ChromaticScale.notes.forEach { note ->
-            val deviation = getTuningDeviation(note.frequency, detectedFrequency)
+        chromaticScale.forEach { note ->
+            val deviation = getTuningDeviation(note.actualPitch, detectedFrequency)
             if (deviation.absoluteValue < minDeviation.absoluteValue) {
                 minDeviation = deviation
                 closestNote = note

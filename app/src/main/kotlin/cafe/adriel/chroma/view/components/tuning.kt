@@ -24,14 +24,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import cafe.adriel.chroma.model.tuner.ChromaticScale
+import cafe.adriel.chroma.manager.SettingsManager
+import cafe.adriel.chroma.model.tuner.ChromaticNote
 import cafe.adriel.chroma.model.tuner.TuningDeviationPrecision
 import cafe.adriel.chroma.model.tuner.TuningDeviationResult
 import cafe.adriel.chroma.model.tuner.TuningUnit
 
 @Composable
 fun TuningNote(
-    note: ChromaticScale,
+    note: ChromaticNote,
     tone: String,
     accidental: Painter?,
     advancedMode: Boolean,
@@ -66,7 +67,7 @@ fun TuningNote(
         }
         if (advancedMode) {
             Text(
-                text = note.octave.toString(),
+                text = note.note.toString(),
                 color = MaterialTheme.colors.onBackground,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.h2,
@@ -76,7 +77,7 @@ fun TuningNote(
                 }
             )
             TuningValue(
-                value = note.formattedFrequency,
+                value = note.actualPitch.toString(),
                 unit = TuningUnit.HERTZ,
                 color = MaterialTheme.colors.onBackground.copy(alpha = .5f),
                 valueStyle = MaterialTheme.typography.h5,
